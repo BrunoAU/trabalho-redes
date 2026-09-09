@@ -1,10 +1,10 @@
-# Checkpoint 1 — Handshake & Sockets 💻
+# Checkpoint 1 — Handshake & Sockets
 
 Projeto desenvolvido para a cadeira de **Infraestrutura de Comunicação** (2026.2). Esta entrega corresponde exclusivamente ao **Checkpoint 1**: conexão cliente-servidor via socket TCP e handshake inicial para negociação dos parâmetros da sessão.
 
-> Este projeto reutiliza uma base de código já existente, desenvolvida anteriormente e com funcionalidades além deste checkpoint. A versão aqui entregue foi **reduzida deliberadamente** para conter apenas o que o Checkpoint 1 exige. Veja [RELATORIO_CHECKPOINT_1.md](RELATORIO_CHECKPOINT_1.md) para o processo completo.
+> Este projeto reutiliza uma base de código já existente, desenvolvida anteriormente e com funcionalidades além deste checkpoint. A versão aqui entregue foi **reduzida deliberadamente** para conter apenas o que o Checkpoint 1 exige. Veja [Relatório](https://docs.google.com/document/d/1EukpXQcnZxK4Vk5nCOrnK_voOs9IQoYS2vKXrBV6i88/edit?usp=sharing) para o processo completo.
 
-## Objetivo do checkpoint 📑
+## Objetivo do checkpoint
 
 Demonstrar que cliente e servidor conseguem:
 
@@ -17,14 +17,14 @@ Demonstrar que cliente e servidor conseguem:
 
 Este checkpoint **não troca a mensagem em si** — apenas negocia os parâmetros que serão usados para isso depois.
 
-## Arquitetura cliente-servidor 🏗️
+## Arquitetura cliente-servidor
 
 - **Servidor** (`server.py`): abre um socket TCP, faz `bind`/`listen`/`accept` e conduz o handshake com cada cliente em uma thread separada (`threading`, como no código original), permitindo múltiplos clientes conectados ao mesmo tempo. Depois de concluir (ou recusar) o handshake de um cliente, encerra a conexão daquele cliente; o servidor continua aceitando outras conexões.
 - **Cliente** (`cliente.py`): abre um socket TCP, conecta ao servidor e segue o roteiro do handshake, respondendo às solicitações do servidor.
 
 A comunicação usa **socket TCP** (`AF_INET` + `SOCK_STREAM`).
 
-## Endereço e porta 🌐
+## Endereço e porta
 
 - Servidor: `SERVER_HOST = "0.0.0.0"` e `SERVER_PORT = 8080` em `server.py`;
 - Cliente: `SERVER_HOST = "127.0.0.1"` e `SERVER_PORT = 8080` em `cliente.py`.
@@ -33,7 +33,7 @@ O servidor usa `0.0.0.0` para escutar tanto conexões locais quanto conexões re
 
 Para executar na mesma máquina, mantenha `SERVER_HOST = "127.0.0.1"` no `cliente.py` e rode os dois programas conforme a seção seguinte. Para conectar máquinas diferentes, descubra o IPv4 do computador que executa `server.py` e substitua somente `SERVER_HOST` no `cliente.py` por esse endereço, por exemplo `SERVER_HOST = "192.168.1.50"`. Mantenha a porta igual nos dois arquivos e libere a porta `8080` no firewall do computador servidor, se necessário. Não há descoberta automática de IP.
 
-## Como executar ▶️
+## Como executar
 
 ### 1. Servidor
 
@@ -55,7 +55,7 @@ Siga as instruções exibidas: escolha o modo de operação e informe o tamanho 
 
 Nenhuma dependência externa é necessária — apenas a biblioteca padrão do Python (`socket`).
 
-## Funcionamento do handshake 🤝
+## Funcionamento do handshake
 
 O handshake é o mesmo já existente na implementação anterior do grupo, apenas com o envio efetivo da mensagem removido. Segue esta sequência:
 
@@ -92,7 +92,7 @@ Essa foi a única mudança estrutural feita no código de troca de mensagens. Um
 
 O código original pedia ao operador do servidor um número de 1 a 5 sem nenhum valor padrão — era preciso digitar algo sempre. Isso não impunha o "valor inicial de 5" exigido pela especificação: se o operador digitasse `3`, a sessão simplesmente começava com janela 3. Ajuste aplicado: pressionar ENTER sem digitar nada agora assume `5` (`[SERVIDOR][...]Escolha o tamanho da janela (1 a 5) [ENTER = 5]:`); digitar um valor de 1 a 5 continua funcionando normalmente para testar outros tamanhos.
 
-## Parâmetros negociados e seus significados 📋
+## Parâmetros negociados e seus significados
 
 | Parâmetro | Quem escolhe | Faixa válida | Significado |
 |---|---|---|---|
@@ -100,7 +100,7 @@ O código original pedia ao operador do servidor um número de 1 a 5 sem nenhum 
 | **Tamanho máximo do texto inicial** | Cliente (servidor valida) | inteiro ≥ 30 (mínimo/default = 30) | Tamanho máximo, em caracteres, do texto que o cliente poderá enviar como mensagem completa em checkpoints futuros. |
 | **Tamanho da janela** | Servidor | inteiro de 1 a 5 (valor inicial = 5) | Quantidade de pacotes que poderão ser enviados/confirmados por vez quando a transmissão real for implementada. A especificação determina que a janela é escolhida pelo servidor e começa com valor 5, podendo variar entre 1 e 5. |
 
-## Limitações desta versão ⚠️
+## Limitações desta versão
 
 Esta entrega **termina após o handshake**. Propositalmente, **não estão implementados nesta versão**:
 
@@ -115,7 +115,7 @@ Esta entrega **termina após o handshake**. Propositalmente, **não estão imple
 
 Essas funcionalidades pertencem aos **Checkpoint 2** (troca de mensagens sem erros, protocolo completo) e **Checkpoint 3** (inserção efetiva de erros e perdas), e serão adicionadas nas próximas entregas.
 
-## Estrutura 📄
+## Estrutura
 
 ```
 TrabalhoRedes-Checkpoint1/
@@ -126,6 +126,6 @@ TrabalhoRedes-Checkpoint1/
 └── RELATORIO_CHECKPOINT_1.md
 ```
 
-## Uso de Inteligência Artificial 🧠
+## Relatório de processo e IA
 
-Ver [RELATORIO_CHECKPOINT_1.md](RELATORIO_CHECKPOINT_1.md), seção "Processo de construção e uso de IA".
+Ver [Relatório](https://docs.google.com/document/d/1EukpXQcnZxK4Vk5nCOrnK_voOs9IQoYS2vKXrBV6i88/edit?usp=sharing), seção "Processo de construção e uso de IA".
