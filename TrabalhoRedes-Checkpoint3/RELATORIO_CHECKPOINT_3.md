@@ -196,7 +196,7 @@ Esse pedido delimitou a análise inicial ao CP3, tratando CP1 e CP2 como conclu�
 #### Outros prompts principais
 
 1. “Lembre de usar como base o que temos do repositório de Luis Melo, de resto eu concordo, podemos seguir.”
-2. “Faça um .md no estilo de .md que temos do CP2 que é relacionado a defesa oral e com todos os tópicos do CP3 que preciso apresentar e também sobre o 0,5 extra que fizemos durante esse checkpoint.”
+2. “Agora vamos validar todo o funcionamento e garantir que as implementações do CP3 e relacionadas a pontos extras estão implementadas e alinhadas dentro do escopo previsto”
 
 Os registros mostram os principais prompts usados para delimitar o escopo, orientar o uso da referência, solicitar revisão e validação e preparar a defesa oral.
 
